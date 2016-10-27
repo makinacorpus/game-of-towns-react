@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
+
+  addTown(evt) {
+    const town = evt.target.value;
+    console.log(town);
+  }
+
   render() {
     return (
       <div className="App">
@@ -12,7 +18,7 @@ class App extends Component {
           <form>
             <label>
               <p>Ajouter une ville au comparateur</p>
-              <input placeholder={'Ville'} type="text" />
+              <input placeholder={'Ville'} type="text" onChange={this.addTown} />
             </label>
           </form>
         </div>

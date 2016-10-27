@@ -9,6 +9,12 @@ class App extends Component {
           <h2>Game of towns</h2>
         </div>
         <div className="App-content">
+          <form>
+            <label>
+              <p>Ajouter une ville au comparateur</p>
+              <input placeholder={'Ville'} type="text" />
+            </label>
+          </form>
         </div>
       </div>
     );

@@ -3,8 +3,14 @@ import './App.css';
 
 class App extends Component {
 
+  constructor() {
+    super();
+    this.addTown = this.addTown.bind(this);
+  }
+
   addTown(evt) {
-    const town = evt.target.value;
+    evt.preventDefault();
+    const town = this.refs.town.value;
     console.log(town);
   }
 
@@ -15,10 +21,11 @@ class App extends Component {
           <h2>Game of towns</h2>
         </div>
         <div className="App-content">
-          <form>
+          <form onSubmit={this.addTown}>
             <label>
               <p>Ajouter une ville au comparateur</p>
-              <input placeholder={'Ville'} type="text" onChange={this.addTown} />
+              <input placeholder={'Ville'} type="text" ref={'town'} />
+              <input type="submit" value="Ajouter" />
             </label>
           </form>
         </div>

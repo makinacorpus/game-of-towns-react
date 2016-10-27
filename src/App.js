@@ -5,16 +5,29 @@ class App extends Component {
 
   constructor() {
     super();
+
+    this.state = {
+      towns: new Set([])
+    };
+
     this.addTown = this.addTown.bind(this);
   }
 
   addTown(evt) {
     evt.preventDefault();
     const town = this.refs.town.value;
-    console.log(town);
+
+    if (town) {
+      const newSet = new Set(this.state.towns);
+      newSet.add(town);
+      this.setState({
+        towns: newSet
+      });
+    }
   }
 
   render() {
+    console.log(this.state.towns);
     return (
       <div className="App">
         <div className="App-header">

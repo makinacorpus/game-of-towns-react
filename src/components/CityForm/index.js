@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import AutoComplete from './AutoComplete';
-import './CityForm.css';
+import AutoComplete from '../AutoComplete';
+import './index.css';
 
 class CityForm extends Component {
   constructor() {

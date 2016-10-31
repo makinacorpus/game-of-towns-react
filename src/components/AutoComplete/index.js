@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import debounce from 'lodash.debounce';
-import './AutoComplete.css'
+import './index.css'
 
 class AutoComplete extends Component {
 

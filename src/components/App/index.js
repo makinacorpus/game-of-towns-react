@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CityForm from './CityForm';
-import './App.css';
+import CityForm from '../CityForm';
+import './index.css';
 
 class App extends Component {
 

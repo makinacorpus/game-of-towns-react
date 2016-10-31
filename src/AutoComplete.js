@@ -9,12 +9,12 @@ class AutoComplete extends Component {
 
     this.state = {
       autoComplete: null,
-      cityInput: ''
+      inputValue: ''
     };
 
     this.autoComplete = this.autoComplete.bind(this);
     this.getCompletion = debounce(this.getCompletion.bind(this), 500);
-    this.selectCity = this.selectCity.bind(this);
+    this.selectCompletion = this.selectCompletion.bind(this);
   }
 
   getCompletion(query) {
@@ -32,7 +32,7 @@ class AutoComplete extends Component {
   autoComplete(evt) {
     const query = evt.target.value;
     this.setState({
-      cityInput: query
+      inputValue: query
     });
     if (query.length >= 3) {
       this.getCompletion(query);
@@ -43,13 +43,13 @@ class AutoComplete extends Component {
     }
   }
 
-  selectCity(cityKey) {
-    const city = this.state.autoComplete[cityKey];
+  selectCompletion(elementKey) {
+    const element = this.state.autoComplete[elementKey];
     this.setState({
-      cityInput: city.properties.name,
+      inputValue: element.properties.name,
       autoComplete: null
     }, () => {
-      this.props.selectCity(city);
+      this.props.onSelect(element);
     });
   }
 
@@ -61,7 +61,7 @@ class AutoComplete extends Component {
             <li
               className="ac-results-item"
               key={key}
-              onClick={() => this.selectCity(key)}>
+              onClick={() => this.selectCompletion(key)}>
               {results[key].properties.name}
             </li>
           )
@@ -71,7 +71,7 @@ class AutoComplete extends Component {
   }
 
   render() {
-    const cityInput = this.state.cityInput;
+    const inputValue = this.state.inputValue;
     const acResult = this.state.autoComplete;
     const showAc = acResult ? Object.keys(acResult).length > 0 : false;
     const placeholder = this.props.placeholder ? this.props.placeholder : '';
@@ -83,7 +83,7 @@ class AutoComplete extends Component {
           placeholder={placeholder}
           name={name}
           type="text"
-          value={cityInput}
+          value={inputValue}
           onChange={this.autoComplete} />
         <div className="ac-results">
           { showAc ? this.renderAutoComplete(acResult) : null }

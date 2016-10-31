@@ -44,7 +44,7 @@ class CityForm extends Component {
           <AutoComplete
             name={'city'}
             placeholder={'Ville'}
-            selectCity={this.selectCity}/>
+            onSelect={this.selectCity}/>
         </label>
         <button
           type="submit"

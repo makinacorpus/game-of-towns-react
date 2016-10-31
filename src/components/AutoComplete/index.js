@@ -62,7 +62,7 @@ class AutoComplete extends Component {
               className="ac-results-item"
               key={key}
               onClick={() => this.selectCompletion(key)}>
-              {results[key].properties.name}
+              {results[key].properties.name}  ({results[key].properties.country})
             </li>
           )
         }

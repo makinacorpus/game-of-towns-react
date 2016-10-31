@@ -10,16 +10,45 @@
 
 .App-content .city-add {
   position: relative;
-  z-index: 9;
+  z-index: 2;
 }
 
 .App-content .got-map-grid {
   position: relative;
   z-index: 1;
+  background: #d4d4d4;
 }
 
-.got-map-grid .got-map {
+.got-map-container {
+  box-sizing: border-box;
   float: left;
   height: 30vh;
-  width: calc(100% / 3);
+  width: 31%;
+  margin: 1rem 1%;
+  position: relative;
+  padding: 1rem;
+  box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.got-map-container .got-map {
+  position: relative;
+  z-index: 1;
+}
+
+.got-map-remove {
+  position: absolute;
+  z-index: 2;
+  background: white;
+  color: #2d2d2d;
+  padding: 0.5rem 1rem;
+  font-family: monospace;
+  font-size: 1.5rem;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  transition: background 0.1s ease-out;
+}
+
+.got-map-remove:hover {
+  background: #61dafb;
 }

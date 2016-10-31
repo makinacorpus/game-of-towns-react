@@ -1,0 +1,59 @@
+.ac-input {
+  position: relative;
+}
+
+.ac-field {
+  padding: 0.8rem;
+  font-size: 1rem;
+  margin: 1rem;
+  border: 1px solid #2d2d2d;
+  background: #2d2d2d;
+  color: white;
+  border-radius: 2px;
+  outline: 0;
+  transition: border 0.2s ease-out;
+}
+
+.ac-field:hover {
+  border-color: #61dafb;
+}
+
+.ac-field:focus,
+.ac-field:active {
+  border-color: #61dafb;
+  color: #61dafb;
+}
+
+.ac-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #2d2d2d;
+  color: #e9e9e9;
+  display: none;
+}
+
+.ac-field:focus + .ac-results,
+.ac-field:active + .ac-results {
+  display: block;
+}
+
+.ac-results-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ac-results-item {
+  padding: 1rem 1.8rem;
+  border-bottom: 1px solid #444444;
+  cursor: pointer;
+}
+
+.ac-results-item:hover,
+.ac-results-item:active,
+.ac-results-item:focus {
+  background: #444444;
+  color: #61dafb;
+}

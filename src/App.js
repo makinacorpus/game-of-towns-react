@@ -35,12 +35,14 @@ class App extends Component {
           <h2>Game of towns</h2>
         </div>
         <div className="App-content">
-          <form onSubmit={this.addTown}>
+          <form className="city-add" onSubmit={this.addTown}>
             <label>
               <p>Ajouter une ville au comparateur</p>
               <AutoComplete/>
-              <input type="submit" value="Ajouter" />
             </label>
+            <button type="submit">
+              Ajouter
+            </button>
           </form>
         </div>
       </div>

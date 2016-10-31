@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import debounce from 'lodash.debounce';
+import './AutoComplete.css'
 
 class AutoComplete extends Component {
 
@@ -54,7 +55,10 @@ class AutoComplete extends Component {
       <ul className="ac-results-list">
         {
           Object.keys(results).map(key =>
-            <li key={key} onClick={() => this.selectCity(key)}>
+            <li
+              className="ac-results-item"
+              key={key}
+              onClick={() => this.selectCity(key)}>
               {results[key].properties.name}
             </li>
           )

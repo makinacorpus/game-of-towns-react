@@ -8,7 +8,8 @@ class App extends Component {
     super();
 
     this.state = {
-      towns: new Set([])
+      towns: new Set([]),
+      autoComplete: null
     };
 
     this.addTown = this.addTown.bind(this);
@@ -34,7 +35,9 @@ class App extends Component {
     fetch(url)
       .then(response => response.json())
       .then(json => {
-        console.log(json);
+        this.setState({
+          autoComplete: json.features
+        });
       })
       .catch(err => console.error(err));
   }
@@ -47,7 +50,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.towns);
+    console.log(this.state);
     return (
       <div className="App">
         <div className="App-header">

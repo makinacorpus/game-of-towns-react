@@ -9,7 +9,8 @@ class App extends Component {
 
     this.state = {
       towns: new Set([]),
-      autoComplete: null
+      autoComplete: null,
+      cityInput: ''
     };
 
     this.addTown = this.addTown.bind(this);
@@ -45,6 +46,9 @@ class App extends Component {
 
   autoComplete(evt) {
     const query = evt.target.value;
+    this.setState({
+      cityInput: query
+    });
     if (query.length >= 3) {
       this.getCompletion(query);
     }
@@ -70,6 +74,7 @@ class App extends Component {
 
   render() {
     console.log(this.state);
+    const cityInput = this.state.cityInput;
     const acResult = this.state.autoComplete;
     const showAc = acResult ? Object.keys(acResult).length > 0 : false;
     return (
@@ -87,6 +92,7 @@ class App extends Component {
                   placeholder={'Ville'}
                   type="text"
                   ref={'town'}
+                  value={cityInput}
                   onChange={this.autoComplete} />
                 <div className="ac-results">
                   { showAc ? this.renderAutoComplete(acResult) : null }

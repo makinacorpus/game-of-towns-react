@@ -25,8 +25,27 @@ class App extends Component {
     }
   }
 
+  renderMapGrid(towns) {
+    console.log(towns);
+    const maps = [];
+    towns.forEach(town => {
+      maps.push(
+        <Map
+          key={town.properties.osm_id}
+          center={town.geometry.coordinates}/>
+      )
+    });
+    console.log(maps);
+    return (
+      <div className="got-map-grid">
+        {maps}
+      </div>
+    );
+  }
+
   render() {
     console.log(this.state);
+    const towns = this.state.towns;
     return (
       <div className="App">
         <div className="App-header">
@@ -34,9 +53,7 @@ class App extends Component {
         </div>
         <div className="App-content">
           <CityForm onSubmit={this.addTown}/>
-          <div style={{height: '500px', width: '500px'}}>
-            <Map />
-          </div>
+          {this.renderMapGrid(towns)}
         </div>
       </div>
     );

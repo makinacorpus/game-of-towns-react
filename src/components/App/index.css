@@ -7,3 +7,19 @@
 .App-header h2 {
   margin: 0;
 }
+
+.App-content .city-add {
+  position: relative;
+  z-index: 9;
+}
+
+.App-content .got-map-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.got-map-grid .got-map {
+  float: left;
+  height: 30vh;
+  width: calc(100% / 3);
+}

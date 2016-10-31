@@ -13,14 +13,16 @@ class Map extends Component {
 
   componentDidMount() {
     let map;
+    const center = this.props.center;
     const mapContainer = this.refs.map;
     const layers = [
       L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       })
     ];
+    const mapCenter = center ? [center[1], center[0]] : [51.505, -0.09];
     const options = {
-      center: [51.505, -0.09],
+      center: mapCenter,
       zoom: 13,
       layers: layers
     };

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import debounce from 'lodash.debounce';
 import './App.css';
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
 
     this.addTown = this.addTown.bind(this);
     this.autoComplete = this.autoComplete.bind(this);
+    this.getCompletion = debounce(this.getCompletion.bind(this), 500);
   }
 
   addTown(evt) {
@@ -27,9 +29,21 @@ class App extends Component {
     }
   }
 
+  getCompletion(query) {
+    const url = `http://photon.komoot.de/api/?q=${query}&limit=5`;
+    fetch(url)
+      .then(response => response.json())
+      .then(json => {
+        console.log(json);
+      })
+      .catch(err => console.error(err));
+  }
+
   autoComplete(evt) {
     const query = evt.target.value;
-    console.log(query);
+    if (query.length >= 3) {
+      this.getCompletion(query);
+    }
   }
 
   render() {

@@ -11,6 +11,7 @@ class App extends Component {
     };
 
     this.addTown = this.addTown.bind(this);
+    this.autoComplete = this.autoComplete.bind(this);
   }
 
   addTown(evt) {
@@ -26,6 +27,11 @@ class App extends Component {
     }
   }
 
+  autoComplete(evt) {
+    const query = evt.target.value;
+    console.log(query);
+  }
+
   render() {
     console.log(this.state.towns);
     return (
@@ -37,7 +43,7 @@ class App extends Component {
           <form onSubmit={this.addTown}>
             <label>
               <p>Ajouter une ville au comparateur</p>
-              <input placeholder={'Ville'} type="text" ref={'town'} />
+              <input placeholder={'Ville'} type="text" ref={'town'} onChange={this.autoComplete} />
               <input type="submit" value="Ajouter" />
             </label>
           </form>

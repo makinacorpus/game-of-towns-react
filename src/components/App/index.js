@@ -13,6 +13,7 @@ class App extends Component {
     };
 
     this.addTown = this.addTown.bind(this);
+    this.removeTown = this.removeTown.bind(this);
   }
 
   addTown(town) {
@@ -25,17 +26,28 @@ class App extends Component {
     }
   }
 
+  removeTown(town) {
+    if (town && this.state.towns.has(town)) {
+      const newSet = new Set(this.state.towns);
+      newSet.delete(town);
+      this.setState({
+        towns: newSet
+      });
+    }
+  }
+
   renderMapGrid(towns) {
-    console.log(towns);
+
     const maps = [];
     towns.forEach(town => {
       maps.push(
-        <Map
-          key={town.properties.osm_id}
-          center={town.geometry.coordinates}/>
+        <div key={town.properties.osm_id} className="got-map-container">
+          <Map center={town.geometry.coordinates}/>
+          <div className="got-map-remove" onClick={() => this.removeTown(town)}>x</div>
+        </div>
       )
     });
-    console.log(maps);
+
     return (
       <div className="got-map-grid">
         {maps}

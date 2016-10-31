@@ -55,7 +55,10 @@ class App extends Component {
   }
 
   selectCity(cityKey) {
-    console.log(cityKey);
+    const city = this.state.autoComplete[cityKey];
+    this.setState({
+      cityInput: city.properties.name
+    }, () => {this.getCompletion(city.properties.name)});
   }
 
   renderAutoComplete(results) {

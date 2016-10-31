@@ -8,15 +8,17 @@ class App extends Component {
     super();
 
     this.state = {
-      towns: new Set([])
+      towns: new Set([]),
+      selectedCity: null
     };
 
     this.addTown = this.addTown.bind(this);
+    this.selectCity = this.selectCity.bind(this);
   }
 
   addTown(evt) {
     evt.preventDefault();
-    const town = this.refs.town.value;
+    const town = this.state.selectedCity;
 
     if (town) {
       const newSet = new Set(this.state.towns);
@@ -27,8 +29,21 @@ class App extends Component {
     }
   }
 
+  selectCity(city) {
+    if (city) {
+      this.setState({
+        selectedCity: city
+      });
+    } else {
+      this.setState({
+        selectedCity: null
+      });
+    }
+  }
+
   render() {
     console.log(this.state);
+    const selectedCity = this.state.selectedCity
     return (
       <div className="App">
         <div className="App-header">
@@ -38,9 +53,15 @@ class App extends Component {
           <form className="city-add" onSubmit={this.addTown}>
             <label>
               <p>Ajouter une ville au comparateur</p>
-              <AutoComplete/>
+              <AutoComplete
+                name={'city'}
+                placeholder={'Ville'}
+                selectCity={this.selectCity}/>
             </label>
-            <button type="submit">
+            <button
+              type="submit"
+              disabled={!selectedCity}
+              className={!selectedCity ? 'disabled' : ''}>
               Ajouter
             </button>
           </form>

@@ -44,3 +44,8 @@
   border-color: #61dafb;
   color: #61dafb;
 }
+
+.city-add button[disabled] {
+  opacity: 0.4;
+  border-color: #2d2d2d;
+}

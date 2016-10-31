@@ -46,8 +46,11 @@ class AutoComplete extends Component {
   selectCity(cityKey) {
     const city = this.state.autoComplete[cityKey];
     this.setState({
-      cityInput: city.properties.name
-    }, () => {this.getCompletion(city.properties.name)});
+      cityInput: city.properties.name,
+      autoComplete: null
+    }, () => {
+      this.props.selectCity(city);
+    });
   }
 
   renderAutoComplete(results) {
@@ -71,13 +74,15 @@ class AutoComplete extends Component {
     const cityInput = this.state.cityInput;
     const acResult = this.state.autoComplete;
     const showAc = acResult ? Object.keys(acResult).length > 0 : false;
+    const placeholder = this.props.placeholder ? this.props.placeholder : '';
+    const name = this.props.name ? this.props.name : 'auto-complete';
     return (
       <div className="ac-input">
         <input
           className="ac-field"
-          placeholder={'Ville'}
+          placeholder={placeholder}
+          name={name}
           type="text"
-          ref={'town'}
           value={cityInput}
           onChange={this.autoComplete} />
         <div className="ac-results">

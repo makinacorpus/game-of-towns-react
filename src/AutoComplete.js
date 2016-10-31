@@ -35,6 +35,10 @@ class AutoComplete extends Component {
     });
     if (query.length >= 3) {
       this.getCompletion(query);
+    } else {
+      this.setState({
+        autoComplete: []
+      });
     }
   }
 

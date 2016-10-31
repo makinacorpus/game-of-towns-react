@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CityForm from '../CityForm';
+import Map from '../Map';
 import './index.css';
 
 class App extends Component {
@@ -33,6 +34,9 @@ class App extends Component {
         </div>
         <div className="App-content">
           <CityForm onSubmit={this.addTown}/>
+          <div style={{height: '500px', width: '500px'}}>
+            <Map />
+          </div>
         </div>
       </div>
     );

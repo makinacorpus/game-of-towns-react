@@ -15,6 +15,7 @@ class App extends Component {
     this.addTown = this.addTown.bind(this);
     this.autoComplete = this.autoComplete.bind(this);
     this.getCompletion = debounce(this.getCompletion.bind(this), 500);
+    this.selectCity = this.selectCity.bind(this);
   }
 
   addTown(evt) {
@@ -49,8 +50,28 @@ class App extends Component {
     }
   }
 
+  selectCity(cityKey) {
+    console.log(cityKey);
+  }
+
+  renderAutoComplete(results) {
+    return (
+      <ul className="ac-results-list">
+        {
+          Object.keys(results).map(key =>
+            <li key={key} onClick={() => this.selectCity(key)}>
+              {results[key].properties.name}
+            </li>
+          )
+        }
+      </ul>
+    );
+  }
+
   render() {
     console.log(this.state);
+    const acResult = this.state.autoComplete;
+    const showAc = acResult ? Object.keys(acResult).length > 0 : false;
     return (
       <div className="App">
         <div className="App-header">
@@ -60,7 +81,17 @@ class App extends Component {
           <form onSubmit={this.addTown}>
             <label>
               <p>Ajouter une ville au comparateur</p>
-              <input placeholder={'Ville'} type="text" ref={'town'} onChange={this.autoComplete} />
+              <div className="ac-input">
+                <input
+                  className="ac-field"
+                  placeholder={'Ville'}
+                  type="text"
+                  ref={'town'}
+                  onChange={this.autoComplete} />
+                <div className="ac-results">
+                  { showAc ? this.renderAutoComplete(acResult) : null }
+                </div>
+              </div>
               <input type="submit" value="Ajouter" />
             </label>
           </form>
